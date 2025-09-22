@@ -1,18 +1,16 @@
-from pyscript import display, HTML
-import js
+from pyscript import document
 
 def compute_average(event=None):
-    # where values are inputted, default is 0
-    score1 = float(js.document.getElementById("score1").value or 0)
-    score2 = float(js.document.getElementById("score2").value or 0)
+    # gets the values from input fields (if empty then 0)
+    score1 = float(document.getElementById("score1").value or 0)
+    score2 = float(document.getElementById("score2").value or 0)
 
-    # compute the average
+    # computes the average of the two scores
     average = (score1 + score2) / 2
 
-    # pass or fail
-    status = "Passed" if average >= 75 else "Failed"
+    # pass or fail 
+    passed = "Yes" if average >= 75 else "No"
 
-    # display result
-    result_div = js.document.getElementById("result")
-    result_div.innerHTML = ""  # clear previous result
-    display(HTML(f"Average: {average:.2f} - {status}"), target="result")
+    # displays result
+    result_div = document.getElementById("result")
+    result_div.innerText = f"Average: {average:.2f}\nPassed?: {passed}"
